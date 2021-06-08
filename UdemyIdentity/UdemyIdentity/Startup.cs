@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UdemyIdentity.Context;
 
 namespace UdemyIdentity
 {
@@ -23,6 +24,14 @@ namespace UdemyIdentity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<UdemyContext>();
+            services.AddIdentity<AppUser, AppRole>(opt=> {
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequiredLength = 1;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<UdemyContext>();
             services.AddControllersWithViews();
         }
 

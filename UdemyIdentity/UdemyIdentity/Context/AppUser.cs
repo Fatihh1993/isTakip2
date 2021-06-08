@@ -10,6 +10,10 @@ namespace UdemyIdentity.Context
     {
         public string PictureUrl { get; set; }
         public string Gender { get; set; }
+        public string Name { get; set; }
+        public string SurName { get; set; }
+
+
 
     }
 }
